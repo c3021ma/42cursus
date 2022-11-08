@@ -1,30 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memset.c                                        :+:      :+:    :+:   */
+/*   ft_split.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fmoreno- <fmoreno-@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/12 10:53:41 by fmoreno-          #+#    #+#             */
-/*   Updated: 2022/11/08 17:50:37 by fmoreno-         ###   ########.fr       */
+/*   Updated: 2022/11/08 19:11:21 by fmoreno-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include	<string.h>
-#include	<stdio.h>
-#include	"libft.h"
+#include "libft.h"
 
-void	*ft_memset(void *b, int c, size_t len)
+char	**ft_split(char const *s, char c)
 {
-	size_t				i;
-	unsigned char		*str;
+	char	*mem;
+	char	*fts1;
+	int		start;
+	int		len;
 
-	i = 0;
-	str = b;
-	while (i < len)
+	fts1 = (char *)s1;
+	start = 0;
+	len = ft_strlen(fts1);
+	while (fts1[start] && ft_char_in_set(fts1[start], (char *)set))
 	{
-		str[i] = c;
-		i++;
+		start++;
 	}
-	return (b);
+	while (len > start && ft_char_in_set(fts1[len - 1], (char *)set))
+		len--;
+	mem = ft_substr((char *)fts1, (unsigned int) start, (size_t) len - start);
+	return (mem);
 }

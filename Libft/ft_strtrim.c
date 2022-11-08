@@ -1,30 +1,47 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memset.c                                        :+:      :+:    :+:   */
+/*   ft_strtrim.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fmoreno- <fmoreno-@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/12 10:53:41 by fmoreno-          #+#    #+#             */
-/*   Updated: 2022/11/08 17:50:37 by fmoreno-         ###   ########.fr       */
+/*   Updated: 2022/11/08 19:08:47 by fmoreno-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include	<string.h>
-#include	<stdio.h>
-#include	"libft.h"
+#include "libft.h"
 
-void	*ft_memset(void *b, int c, size_t len)
+int	ft_char_in_set(char c, char *set)
 {
-	size_t				i;
-	unsigned char		*str;
+	int	i;
 
 	i = 0;
-	str = b;
-	while (i < len)
+	while (set[i])
 	{
-		str[i] = c;
+		if (c == set[i])
+			return (1);
 		i++;
 	}
-	return (b);
+	return (0);
+}
+
+char	*ft_strtrim(char const *s1, char const *set)
+{
+	char	*mem;
+	char	*fts1;
+	int		start;
+	int		len;
+
+	fts1 = (char *)s1;
+	start = 0;
+	len = ft_strlen(fts1);
+	while (fts1[start] && ft_char_in_set(fts1[start], (char *)set))
+	{
+		start++;
+	}
+	while (len > start && ft_char_in_set(fts1[len - 1], (char *)set))
+		len--;
+	mem = ft_substr((char *)fts1, (unsigned int) start, (size_t) len - start);
+	return (mem);
 }
