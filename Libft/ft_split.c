@@ -6,28 +6,58 @@
 /*   By: fmoreno- <fmoreno-@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/12 10:53:41 by fmoreno-          #+#    #+#             */
-/*   Updated: 2022/11/08 19:11:21 by fmoreno-         ###   ########.fr       */
+/*   Updated: 2022/11/15 18:19:27 by fmoreno-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
+int	ft_count_slices(const char *s, char c)
+{
+	int		i;
+	int		cut;
+
+	i = 0;
+	cut = 0;
+	while (*s)
+	{
+		if (*s != c && cut == 0)
+		{
+			cut = 1;
+			i++;
+		}
+		else if (*s == c)
+			cut = 0;
+		s++;
+	}
+	return (i);
+}
+
 char	**ft_split(char const *s, char c)
 {
-	char	*mem;
-	char	*fts1;
+	int		i;
+	int		j;
 	int		start;
-	int		len;
+	char	**split;
 
-	fts1 = (char *)s1;
-	start = 0;
-	len = ft_strlen(fts1);
-	while (fts1[start] && ft_char_in_set(fts1[start], (char *)set))
+	split = ft_calloc((ft_count_slices(s, c) + 1), sizeof(char *));
+	if (!split || !s)
+		return (NULL);
+	i = 0;
+	j = 0;
+	start = -1;
+	while (i <= ft_strlen(s))
 	{
-		start++;
+		if (s[i] != c && start < 0)
+			start = i;
+		else if ((s[i] == c || i == ft_strlen(s)) && start >= 0)
+		{
+			split[j] = ft_substr(s, start, i - start);
+			j++;
+			start = -1;
+		}
+		i++;
 	}
-	while (len > start && ft_char_in_set(fts1[len - 1], (char *)set))
-		len--;
-	mem = ft_substr((char *)fts1, (unsigned int) start, (size_t) len - start);
-	return (mem);
+	split[j] = 0;
+	return (split);
 }
