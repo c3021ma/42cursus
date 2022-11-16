@@ -14,35 +14,34 @@
 
 int	ft_len_nbr(int num)
 {
-	int	ln;
+	int	len;
 
-	ln = 0;
-	if (num == -2147483648)
-		return (10);
-	if (num < 0)
-		num = num * -1;
 	while (num / 10)
 	{
 		ln++;
 		num = num / 10;
 	}
-	ln = ln + 1;
-	return (ln);
+	len = len + 1;
+	return (len);
 }
+
+
 
 char	*ft_itoa(int n)
 {
 	char	*str;
-	int		len;
-	char	sign;
+	int	len;
+	char	sp;
 
-	sign = 0;
-	len = ft_len_nbr(n);
+	sp = 0;
 	if (n < 0)
+		sp = -1;
+	if (n == -2147483648)
 	{
-		sign = 45;
-		len = len + 1;
+		n = (n + 1);
+		sp = 1;
 	}
+	len = ft_len_nbr(n * sp) + (sp * sp);
 	printf("len %i\n", len);
 	str = ft_calloc(len + 1, sizeof(char));
 	while (len > 0)
@@ -53,8 +52,10 @@ char	*ft_itoa(int n)
 		n = n / 10;
 		len--;
 	}
-	if (sign == 45)
-		str[0] = sign;
+	if (sp == 1)
+		str[len] = "8";
+	if (sp == -1)
+		str[0] = 45;
 	printf("char %c", str[0]);
 	return (str);
 }
