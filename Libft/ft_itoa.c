@@ -6,7 +6,7 @@
 /*   By: fmoreno- <fmoreno-@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/12 10:53:41 by fmoreno-          #+#    #+#             */
-/*   Updated: 2022/11/17 19:40:19 by fmoreno-         ###   ########.fr       */
+/*   Updated: 2022/11/20 11:38:49 by fmoreno-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,37 +29,39 @@ int	ft_len_nbr(int num)
 	return (len);
 }
 
+int	check_sp(int num)
+{
+	if (num == -2147483648)
+		return (1);
+	else
+		return (0);
+}
+
+char	check_notpos(int num)
+{
+	if (num == 0)
+		return ('0');
+	else
+		return (45);
+}
+
 char	*ft_itoa(int n)
 {
 	char	*str;
 	int		len;
-	char	sp;
 
-	sp = 0;
-	if (n == -2147483648)
-	{
-		n = (n + 1);
-		sp = 1;
-	}
 	len = ft_len_nbr(n);
 	str = ft_calloc(len + 1, sizeof(char));
 	if (!str)
 		return (NULL);
-	str[len] = '\0';
-	if (n == 0)
-		str[0] = '0';
-	else if (n < 0)
-	{
-		str[0] = 45;
-		n = -n;
-	}
-	if (sp == 1)
+	if (check_sp(n) == 1)
 	{
 		str[len - 1] = 8 + '0';
-		sp = 0;
 		n = n / 10;
 		len--;
 	}
+	str[0] = check_notpos (n);
+	n = abs(n);
 	while (n > 0)
 	{
 		str[len - 1] = (n % 10 + '0');
@@ -68,13 +70,3 @@ char	*ft_itoa(int n)
 	}
 	return (str);
 }
-/*
-int	main(void)
-{
-	int	n;
-
-	n = -2147483648;
-	ft_itoa(n);
-	return (0);
-}
-*/
