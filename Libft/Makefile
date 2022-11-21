@@ -6,7 +6,7 @@
 #    By: fmoreno- <fmoreno-@student.42malaga.com>   +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/10/04 16:54:34 by fmoreno-          #+#    #+#              #
-#    Updated: 2022/11/20 12:14:19 by fmoreno-         ###   ########.fr        #
+#    Updated: 2022/11/21 20:53:20 by fmoreno-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -46,9 +46,17 @@ SRCS			=	ft_isalpha.c \
 					ft_putchar_fd.c \
 					ft_putstr_fd.c \
 					ft_putendl_fd.c \
-					ft_putnbr_fd.c
+					ft_putnbr_fd.c \
 					
+SRCS_BONUS		=	ft_lstnew.c \
+					ft_lstadd_front.c \
+					ft_lstsize.c \
+					ft_lstlast.c \
+					ft_lstadd_back.c
+
 OBJS			= $(SRCS:.c=.o)
+
+BONUS			= $(SRCS_BONUS:.c=.o)
 
 CC				= gcc
 
@@ -64,11 +72,14 @@ $(NAME):		$(OBJS)
 				ar rcs $(NAME) $(OBJS)
 
 clean:
-				$(RM) $(OBJS)
+				$(RM) $(OBJS) $(BONUS)
 
 fclean:			clean
 				$(RM) $(NAME)
 
 re:				fclean $(NAME)
 
-.PHONY:			all clean fclean re
+bonus:			$(OBJS) $(BONUS)
+				ar rcs $(NAME) $(OBJS) $(BONUS)
+
+.PHONY:			all clean fclean re bonus
