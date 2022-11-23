@@ -6,7 +6,7 @@
 /*   By: fmoreno- <fmoreno-@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/12 10:53:41 by fmoreno-          #+#    #+#             */
-/*   Updated: 2022/11/23 19:24:09 by fmoreno-         ###   ########.fr       */
+/*   Updated: 2022/11/23 20:48:16 by fmoreno-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,13 +16,13 @@ void	ft_lstadd_back(t_list **lst, t_list *new)
 {
 	t_list	*last;
 
-	if (!new)
+	if (new == NULL)
 		return ;
-	if (!*lst)
+	if (*lst)
 	{
-		*lst = new;
-		return ;
+		last = ft_lstlast(*lst);
+		last -> next = new ;
 	}
-	last = ft_lstlast(*lst);
-	last -> next = new;
+	else
+		*lst = new;
 }

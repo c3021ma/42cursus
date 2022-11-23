@@ -6,7 +6,7 @@
 /*   By: fmoreno- <fmoreno-@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/12 10:53:41 by fmoreno-          #+#    #+#             */
-/*   Updated: 2022/11/21 20:47:21 by fmoreno-         ###   ########.fr       */
+/*   Updated: 2022/11/23 20:36:32 by fmoreno-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,14 @@
 
 int	ft_lstsize(t_list *lst)
 {
-	int	i;
+	int		i;
+	t_list	*test;
 
 	i = 0;
-	while (lst)
+	test = lst;
+	while (test != NULL)
 	{
-		lst = lst->next;
+		test = test->next;
 		i++;
 	}
 	return (i);
