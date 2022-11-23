@@ -6,7 +6,7 @@
 #    By: fmoreno- <fmoreno-@student.42malaga.com>   +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/10/04 16:54:34 by fmoreno-          #+#    #+#              #
-#    Updated: 2022/11/21 20:53:20 by fmoreno-         ###   ########.fr        #
+#    Updated: 2022/11/23 19:58:48 by fmoreno-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -52,7 +52,11 @@ SRCS_BONUS		=	ft_lstnew.c \
 					ft_lstadd_front.c \
 					ft_lstsize.c \
 					ft_lstlast.c \
-					ft_lstadd_back.c
+					ft_lstadd_back.c \
+					ft_lstdelone.c \
+					ft_lstclear.c \
+					ft_lstiter.c \
+					*ft_lstmap.c
 
 OBJS			= $(SRCS:.c=.o)
 
