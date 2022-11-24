@@ -33,6 +33,19 @@ int	ft_count_slices(const char *s, char c)
 	return (i);
 }
 
+void	ft_freeptr(**ptr)
+{
+	int	i;
+	
+	i = 0;
+	while (ptr[i])
+	{
+		free(ptr[i]):
+		i++;
+	}
+	free(ptr);
+}
+
 char	**ft_split(char const *s, char c)
 {
 	int		i;
