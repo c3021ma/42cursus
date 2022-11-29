@@ -6,7 +6,7 @@
 /*   By: fmoreno- <fmoreno-@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/12 10:53:41 by fmoreno-          #+#    #+#             */
-/*   Updated: 2022/11/15 19:15:31 by fmoreno-         ###   ########.fr       */
+/*   Updated: 2022/11/29 19:15:24 by fmoreno-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,17 +33,14 @@ int	ft_count_slices(const char *s, char c)
 	return (i);
 }
 
-void	ft_freeptr(**ptr)
+static char	*ft_split_in(char const *s, int start, int i)
 {
-	int	i;
-	
-	i = 0;
-	while (ptr[i])
-	{
-		free(ptr[i]):
-		i++;
-	}
-	free(ptr);
+	char	*split;
+
+	split = ft_substr(s, start, i - start);
+	if (!split)
+		return (NULL);
+	return (split);
 }
 
 char	**ft_split(char const *s, char c)
@@ -65,8 +62,7 @@ char	**ft_split(char const *s, char c)
 			start = i;
 		else if ((s[i] == c || i == ft_strlen(s)) && start >= 0)
 		{
-			split[j] = ft_substr(s, start, i - start);
-			j++;
+			split[j++] = ft_split_in(s, start, i);
 			start = -1;
 		}
 		i++;
