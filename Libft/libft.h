@@ -6,7 +6,7 @@
 /*   By: fmoreno- <fmoreno-@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/04 18:03:35 by fmoreno-          #+#    #+#             */
-/*   Updated: 2022/11/29 19:33:22 by fmoreno-         ###   ########.fr       */
+/*   Updated: 2022/11/29 19:39:54 by fmoreno-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,6 @@
 typedef struct s_list
 {
 	void			*content;
-	size_t			content_size;
 	struct s_list	*next;
 }					t_list;
 
